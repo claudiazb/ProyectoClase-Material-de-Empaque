@@ -32,12 +32,19 @@ namespace Win.EmpaquesZamora
 
             if (usuario == "admin" && contrasena == "123")
             {
-                this.Close(); 
+                this.Close();
             }
             else
             {
-                MessageBox.show("Usuario o contraseña incorrecta");
+                if (usuario == "user" && contrasena == "456")
+                {
+                    this.Close();
+                }
             }
+            else
+                {
+                MessageBox.Show("Usuario o contraseña incorrecta");
+                }
         }
     }
 }
