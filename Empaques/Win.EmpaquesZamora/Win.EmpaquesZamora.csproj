@@ -103,6 +103,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\BL.Empaques.Producto.datasource" />
+    <None Include="Properties\DataSources\BL.Empaques.ProductosBL.datasource" />
+    <None Include="Properties\DataSources\BL.Empaques.SeguridadBL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Screenshot_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BL.Empaques\BL.Empaques.csproj">
+      <Project>{306413ee-2cee-42ef-800b-b19dc30b220b}</Project>
+      <Name>BL.Empaques</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
