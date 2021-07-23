@@ -116,9 +116,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BL.Empaques.CategoriasBL.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.Producto.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.ProductosBL.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.SeguridadBL.datasource" />
+    <None Include="Properties\DataSources\BL.Empaques.TiposBL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

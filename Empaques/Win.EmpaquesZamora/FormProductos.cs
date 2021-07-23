@@ -15,6 +15,9 @@ namespace Win.EmpaquesZamora
     public partial class FormProductos : Form
     {
         ProductosBL _productos;
+        CategoriasBL _categorias;
+        TiposBL _tipoBL;
+        
 
         public FormProductos()
         {
@@ -22,12 +25,14 @@ namespace Win.EmpaquesZamora
 
             _productos = new ProductosBL();
             listaProductosBindingSource.DataSource = _productos.ObtenerProductos();
+
+            _categorias = new CategoriasBL();
+            listaCategoriasBindingSource.DataSource = _categorias.ObtenerCategorias();
+
+            _tipoBL = new TiposBL();
+            listaTiposBindingSource.DataSource = _tipoBL.ObtenerTipos();
         }
 
-        private void FormProductos_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void listaProductosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -122,23 +127,17 @@ namespace Win.EmpaquesZamora
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var producto = (Producto)listaProductosBindingSource.Current;
+            openFileDialog1.FileName = "";
+            openFileDialog1.ShowDialog();
 
-            if (producto != null)
-            {
-                openFileDialog1.ShowDialog();
-                var archivo = openFileDialog1.FileName;
+            var archivo = openFileDialog1.FileName;
 
-                if (archivo != "")
-                {
-                    var fileInfo = new FileInfo(archivo);
-                    var fileStream = fileInfo.OpenRead();
-                    fotoPictureBox.Image = Image.FromStream(fileStream);
-                }
-            }
-            else
+            if (archivo != "")
             {
-                MessageBox.Show("Cree un producto antes de asignar una imagen");
+                var fileInfo = new FileInfo(archivo);
+                var fileStream = fileInfo.OpenRead();
+
+                fotoPictureBox.Image = Image.FromStream(fileStream);
             }
 
         }
