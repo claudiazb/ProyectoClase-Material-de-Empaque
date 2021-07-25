@@ -11,6 +11,7 @@ namespace BL.Empaques
     public class ProductosBL
     {
         Contexto _contexto;
+
         public BindingList<Producto> ListaProductos { get; set; }
 
         public ProductosBL()
@@ -24,8 +25,16 @@ namespace BL.Empaques
             _contexto.Productos.Load();
             ListaProductos = _contexto.Productos.Local.ToBindingList();
 
-
             return ListaProductos;
+        }
+
+        public void CancelarCambios()
+        {
+            foreach (var item in _contexto.ChangeTracker.Entries())
+            {
+                item.State = EntityState.Unchanged;
+                item.Reload();
+            }
         }
 
         public Resultado GuardarProducto(Producto producto)
@@ -37,7 +46,6 @@ namespace BL.Empaques
             }
 
             _contexto.SaveChanges();
-
             resultado.Exitoso = true;
             return resultado;
         }
@@ -45,12 +53,12 @@ namespace BL.Empaques
         public void AgregarProducto()
         {
             var nuevoProducto = new Producto();
-            ListaProductos.Add(nuevoProducto);
+            _contexto.Productos.Add(nuevoProducto);
         }
 
         public bool EliminarProducto(int id)
         {
-            foreach (var producto in ListaProductos)
+            foreach (var producto in ListaProductos.ToList())
             {
                 if (producto.Id == id)
                 {
@@ -68,7 +76,15 @@ namespace BL.Empaques
             var resultado = new Resultado();
             resultado.Exitoso = true;
 
-            if(string.IsNullOrEmpty (producto.Descripcion) == true)
+            if (producto == null)
+            {
+                resultado.Mensaje = "Agregue un producto valido";
+                resultado.Exitoso = false;
+
+                return resultado;
+            }
+
+            if (string.IsNullOrEmpty (producto.Descripcion) == true)
             {
                 resultado.Mensaje = "Ingrese una descripción";
                 resultado.Exitoso = false;
@@ -86,9 +102,20 @@ namespace BL.Empaques
                 resultado.Exitoso = false;
             }
 
+            if (producto.TipoId == 0)
+            {
+                resultado.Mensaje = "Seleccione un Tipo";
+                resultado.Exitoso = false;
+            }
+
+            if (producto.CategoriaId == 0)
+            {
+                resultado.Mensaje = "Seleccione una categoria";
+                resultado.Exitoso = false;
+            }
+
             return resultado; 
         }
-
     }
 
     public class Producto
@@ -103,14 +130,10 @@ namespace BL.Empaques
         public Tipo Tipo { get; set; }
         public byte[] Foto { get; set; }
         public bool Activo { get; set; }
+
+        public Producto()
+        {
+            Activo = true;
+        }
     }
-
-    
-
-    public class Resultado
-    {
-        public bool Exitoso { get; set; }
-        public string Mensaje { get; set; }
-    }
-
 }

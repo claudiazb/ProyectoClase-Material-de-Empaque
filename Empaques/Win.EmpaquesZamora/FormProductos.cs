@@ -86,7 +86,6 @@ namespace Win.EmpaquesZamora
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-
             if (idTextBox.Text != "")
             {
                 var resultado = MessageBox.Show("Desea eliminar este registro?", "Eliminar", MessageBoxButtons.YesNo);
@@ -95,13 +94,11 @@ namespace Win.EmpaquesZamora
                     var id = Convert.ToInt32(idTextBox.Text);
                     Eliminar(id);
                 }
-
             }
         }
 
         private void Eliminar(int id)
-        {
-            
+        { 
             var resultado = _productos.EliminarProducto(id);
 
             if (resultado == true)
@@ -116,28 +113,31 @@ namespace Win.EmpaquesZamora
 
         private void toolStripButtonCancelar_Click(object sender, EventArgs e)
         {
+            _productos.CancelarCambios();
             DeshabilitarHabilitarBotones(true);
-            Eliminar(0);
-        }
-
-        private void fotoPictureBox_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.FileName = "";
-            openFileDialog1.ShowDialog();
 
-            var archivo = openFileDialog1.FileName;
+            var producto = (Producto)listaProductosBindingSource.Current;
 
-            if (archivo != "")
+            if (producto != null)
             {
-                var fileInfo = new FileInfo(archivo);
-                var fileStream = fileInfo.OpenRead();
+                openFileDialog1.ShowDialog();
+                var archivo = openFileDialog1.FileName;
 
-                fotoPictureBox.Image = Image.FromStream(fileStream);
+                if (archivo != "")
+                {
+                    var fileInfo = new FileInfo(archivo);
+                    var fileStream = fileInfo.OpenRead();
+
+                    fotoPictureBox.Image = Image.FromStream(fileStream);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cree un producto antes de asignar una imagen");
             }
 
         }

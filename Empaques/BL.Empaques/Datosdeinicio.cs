@@ -13,33 +13,33 @@ namespace BL.Empaques
         {
 
             var usuarioAdmin = new Usuario();
-            usuarioAdmin.Nombre = " admin ";
-            usuarioAdmin.Contrasena = " 123 ";
+            usuarioAdmin.Nombre = "admin";
+            usuarioAdmin.Contrasena = "123";
 
             contexto.Usuarios.Add(usuarioAdmin);
 
             var categoria1 = new  Categoria();
-            categoria1.Descripcion = " Alimentos ";
+            categoria1.Descripcion = "Alimentos";
             contexto.Categorias.Add(categoria1);
 
             var categoria2 = new  Categoria();
-            categoria2.Descripcion = " Utileria y oficina ";
+            categoria2.Descripcion = "Utileria y oficina";
             contexto.Categorias.Add(categoria2);
 
             var categoria3 = new  Categoria();
-            categoria3.Descripcion = " Electrodomesticos ";
+            categoria3.Descripcion = "Electrodomesticos";
             contexto.Categorias.Add(categoria3);
 
             var tipo1 = new  Tipo();
-            tipo1.Descripcion = " Corrugado ";
+            tipo1.Descripcion = "Corrugado";
             contexto.Tipos.Add(tipo1);
 
             var tipo2 = new  Tipo();
-            tipo2.Descripcion = " Cartoncillo ";
+            tipo2.Descripcion = "Cartoncillo";
             contexto.Tipos.Add(tipo2);
 
             var tipo3 = new  Tipo();
-            tipo3.Descripcion = " Carton piedra ";
+            tipo3.Descripcion = "Carton piedra";
             contexto.Tipos.Add(tipo3);
 
 

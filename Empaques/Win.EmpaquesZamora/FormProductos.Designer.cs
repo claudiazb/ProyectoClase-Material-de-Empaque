@@ -62,9 +62,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.listaCategoriasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoriaIdComboBox = new System.Windows.Forms.ComboBox();
+            this.ComboBox1 = new System.Windows.Forms.ComboBox();
             this.listaTiposBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tipoIdComboBox = new System.Windows.Forms.ComboBox();
+            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             activoLabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
             existenciaLabel = new System.Windows.Forms.Label();
@@ -78,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fotoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaCategoriasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaTiposBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // activoLabel
@@ -176,7 +178,7 @@
             // 
             // listaProductosBindingSource
             // 
-            this.listaProductosBindingSource.DataSource = typeof(BL.Empaques.Producto);
+            this.listaProductosBindingSource.DataSource = typeof(BL.Empaques.ProductosBL);
             // 
             // bindingNavigatorCountItem
             // 
@@ -337,7 +339,6 @@
             this.fotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.fotoPictureBox.TabIndex = 12;
             this.fotoPictureBox.TabStop = false;
-            this.fotoPictureBox.Click += new System.EventHandler(this.fotoPictureBox_Click);
             // 
             // button1
             // 
@@ -367,15 +368,18 @@
             // 
             this.listaCategoriasBindingSource.DataSource = typeof(BL.Empaques.Categoria);
             // 
-            // categoriaIdComboBox
+            // ComboBox1
             // 
-            this.categoriaIdComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProductosBindingSource, "CategoriaId", true));
-            this.categoriaIdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.categoriaIdComboBox.FormattingEnabled = true;
-            this.categoriaIdComboBox.Location = new System.Drawing.Point(99, 140);
-            this.categoriaIdComboBox.Name = "categoriaIdComboBox";
-            this.categoriaIdComboBox.Size = new System.Drawing.Size(304, 21);
-            this.categoriaIdComboBox.TabIndex = 15;
+            this.ComboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.listaProductosBindingSource, "CategoriaId", true));
+            this.ComboBox1.DataSource = this.listaCategoriasBindingSource;
+            this.ComboBox1.DisplayMember = "Descripcion";
+            this.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox1.FormattingEnabled = true;
+            this.ComboBox1.Location = new System.Drawing.Point(99, 140);
+            this.ComboBox1.Name = "ComboBox1";
+            this.ComboBox1.Size = new System.Drawing.Size(304, 21);
+            this.ComboBox1.TabIndex = 15;
+            this.ComboBox1.ValueMember = "Id";
             // 
             // listaTiposBindingSource
             // 
@@ -394,6 +398,10 @@
             this.tipoIdComboBox.TabIndex = 17;
             this.tipoIdComboBox.ValueMember = "Id";
             // 
+            // productoBindingSource
+            // 
+            this.productoBindingSource.DataSource = typeof(BL.Empaques.Producto);
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,7 +410,7 @@
             this.Controls.Add(tipoIdLabel);
             this.Controls.Add(this.tipoIdComboBox);
             this.Controls.Add(categoriaIdLabel);
-            this.Controls.Add(this.categoriaIdComboBox);
+            this.Controls.Add(this.ComboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.fotoPictureBox);
@@ -426,6 +434,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaCategoriasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaTiposBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,8 +467,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.BindingSource listaCategoriasBindingSource;
-        private System.Windows.Forms.ComboBox categoriaIdComboBox;
+        private System.Windows.Forms.ComboBox ComboBox1;
         private System.Windows.Forms.BindingSource listaTiposBindingSource;
         private System.Windows.Forms.ComboBox tipoIdComboBox;
+        private System.Windows.Forms.BindingSource productoBindingSource;
     }
 }

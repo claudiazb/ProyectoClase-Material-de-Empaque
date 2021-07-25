@@ -14,7 +14,6 @@ namespace BL.Empaques
 
         public BindingList<Tipo> ListaTipos { get; set; }
 
-
         public TiposBL()
         {
             _contexto = new Contexto();
