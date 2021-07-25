@@ -117,6 +117,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BL.Empaques.CategoriasBL.datasource" />
+    <None Include="Properties\DataSources\BL.Empaques.ClientesBL.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.Producto.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.ProductosBL.datasource" />
     <None Include="Properties\DataSources\BL.Empaques.SeguridadBL.datasource" />
